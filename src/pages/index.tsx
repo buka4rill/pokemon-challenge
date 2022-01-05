@@ -79,7 +79,7 @@ const Index = () => {
     setPageSize(pageSize);
   };
 
-  console.log(pokemons);
+  // console.log(pokemons);
   return (
     <>
       <Container maxW="container.lg" centerContent>

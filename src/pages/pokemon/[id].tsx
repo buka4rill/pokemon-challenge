@@ -16,8 +16,6 @@ const Details: React.FC<DetailsProps> = ({}) => {
     return await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   });
 
-  console.log("info: ", data?.data);
-
   return (
     <Container maxW="container.xl" centerContent>
       <PokemonDetails
