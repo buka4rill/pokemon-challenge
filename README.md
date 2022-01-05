@@ -1,35 +1,26 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui)
+# An Insight into How I Approched this Challenge
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app.
+For this task, I used Next.JS + [chakra-ui](https://github.com/chakra-ui/chakra-ui). This is because I didn't want to think too much about writing CSS styles, so
+I went for a library that would give me styled components that are pretty, with little to no custom CSS. I also built the project with Typescript for type security and assurance.
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Theme and ColorMode containers so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+I decided not to bother with too much achitecture. I thought of it as a simple app with a few API calls, so I decided not to build with Redux or Context for state management. They have a lot of boilerplate which I felt was unneccessary for this project. I opted for the [react-query](https://react-query.tanstack.com/) package instead. I also used Axios and fetch for some API calls. I used [next-pagination](https://github.com/etchteam/next-pagination) to paginate the data.
 
-## Preview
+# Challenges
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+I found the API is challenging to use because of it's structure. It took me a while to get use to it. I found my self making several HTTP calls of a single task which wouldn't have been necessary if the API was structured differently.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui)
+In `PokemonCard.tsx`, I had quite a bit of a challenge trying to render short description for the Pokemon characters.
 
-## Deploy your own
+I had a bit of challenge implementing the pagination also.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+# What I Would Have Done Differently
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui&project-name=with-chakra-ui&repository-name=with-chakra-ui)
+In an ideal situation, I would have opted of any of the state management libraries React has to offer, but I didn't think it was neccessary for this task.
 
-## How to use
+I would have also hidden the API URLs with a .env file.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Some of my code (especially in `index.tsx` file) could have been refactored. I'd cut down my code and make proper use of components.
 
-```bash
-npx create-next-app --example with-chakra-ui with-chakra-ui-app
-# or
-yarn create next-app --example with-chakra-ui with-chakra-ui-app
-```
+More code commenting
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
-
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.js`.
+Though it was optional, I would have attempted the Search bar task.
