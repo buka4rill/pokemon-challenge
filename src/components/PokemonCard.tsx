@@ -2,14 +2,13 @@ import { SimpleGrid, Box, Button, Image } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
-// import Pagination from "@mui/material/Pagination";
 
 type Result = {
   name: string;
   url: string;
 };
 
-type PokemonData = {
+export type PokemonData = {
   count: number;
   next: string;
   previous: string;
@@ -46,7 +45,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
     }
   };
 
-  // console.log("details: ", data[0].data.descriptions[7].description);
   return (
     <>
       <SimpleGrid columns={[2, null, 3]} spacing="40px">
@@ -95,7 +93,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
           </Box>
         ))}
       </SimpleGrid>
-      {/* <Pagination count={10} color="primary" /> */}
     </>
   );
 };
