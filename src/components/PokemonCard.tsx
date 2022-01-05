@@ -1,50 +1,101 @@
 import { SimpleGrid, Box, Button, Image } from "@chakra-ui/react";
+import axios from "axios";
 import React from "react";
+import { useQuery } from "react-query";
+// import Pagination from "@mui/material/Pagination";
 
-interface PokemonCardProps {}
+type Result = {
+  name: string;
+  url: string;
+};
 
-const PokemonCard: React.FC<PokemonCardProps> = ({}) => {
+type PokemonData = {
+  count: number;
+  next: string;
+  previous: string;
+  results: Result[];
+};
+
+interface PokemonCardProps {
+  response: PokemonData;
+}
+
+const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
+  const getDescription = async () => {
+    let data = [];
+    for (let i = 0; i < 30; i++) {
+      let id = i + 1;
+
+      let res = await axios.get(
+        `https://pokeapi.co/api/v2/characteristic/${id}/`
+      );
+
+      data.push(res);
+    }
+
+    return data;
+  };
+
+  const { data } = useQuery("details", getDescription);
+
+  const renderDescription = (idx: any) => {
+    if (data === undefined) {
+      return <>No description found</>;
+    } else {
+      return <div>{data[idx]?.data?.descriptions[7].description}</div>;
+    }
+  };
+
+  // console.log("details: ", data[0].data.descriptions[7].description);
   return (
     <>
       <SimpleGrid columns={[2, null, 3]} spacing="40px">
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          shadow="md"
-        >
-          <Image
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
-            alt="image"
-          />
+        {response?.results?.map((pokemon, index) => (
+          <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            shadow="md"
+            key={index.toString()}
+          >
+            <Image
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
+                index + 1
+              }.png`}
+              alt="image"
+            />
 
-          <Box p="6">
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              isTruncated
-            >
-              titlte
-            </Box>
-
-            <Box>some short description about the pokemon</Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              <Button
-                colorScheme="teal"
-                variant="outline"
-                size="md"
-                width="100%"
+            <Box p="6">
+              <Box
+                mt="1"
+                fontWeight="semibold"
+                as="h4"
+                lineHeight="tight"
+                isTruncated
               >
-                Button
-              </Button>
+                {pokemon.name}
+              </Box>
+
+              {/* {data === undefined ? (<Box>No description found</Box>) ? (<Box>data</Box>)} */}
+
+              <Box>{renderDescription(index)}</Box>
+
+              <Box display="flex" mt="2" alignItems="center">
+                <Button
+                  colorScheme="teal"
+                  variant="outline"
+                  size="md"
+                  width="100%"
+                >
+                  See details
+                </Button>
+              </Box>
             </Box>
           </Box>
-        </Box>
+        ))}
       </SimpleGrid>
+      {/* <Pagination count={10} color="primary" /> */}
     </>
   );
 };
