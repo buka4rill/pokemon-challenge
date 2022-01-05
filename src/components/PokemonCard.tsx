@@ -1,5 +1,6 @@
 import { SimpleGrid, Box, Button, Image } from "@chakra-ui/react";
 import axios from "axios";
+import Link from "next/link";
 import React from "react";
 import { useQuery } from "react-query";
 
@@ -59,7 +60,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
           >
             <Image
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${
-                index + 1
+                pokemon.url.split("/")[6]
               }.png`}
               alt="image"
             />
@@ -80,14 +81,16 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
               <Box>{renderDescription(index)}</Box>
 
               <Box display="flex" mt="2" alignItems="center">
-                <Button
-                  colorScheme="teal"
-                  variant="outline"
-                  size="md"
-                  width="100%"
-                >
-                  See details
-                </Button>
+                <Link href={`/pokemon/${pokemon.url.split("/")[6]}`}>
+                  <Button
+                    colorScheme="teal"
+                    variant="outline"
+                    size="md"
+                    width="100%"
+                  >
+                    See details
+                  </Button>
+                </Link>
               </Box>
             </Box>
           </Box>

@@ -11,7 +11,6 @@ import {
   PaginationContainer,
   PaginationPageGroup,
 } from "@ajna/pagination";
-import { useRouter } from "next/router";
 import { ChangeEvent, useState, useEffect } from "react";
 
 const Index = () => {
