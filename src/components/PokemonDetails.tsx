@@ -60,63 +60,67 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({
         overflow="hidden"
         shadow="md"
       >
-        <Flex>
-          <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`}
-            alt="image"
-            width="50%"
-          />
+        {/* <Flex> */}
+        <Image
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`}
+          alt="image"
+          // width="50%"
+        />
 
-          <Box p="6" width="50%">
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h3"
-              lineHeight="tight"
-              isTruncated
-            >
-              Name: {name}
-            </Box>
+        <Box p="6">
+          <h4
+            style={{
+              textAlign: "center",
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+          >
+            {name}
+          </h4>
 
-            <Divider />
+          <Divider />
 
-            <h4>Species: {species}</h4>
+          <h4>
+            <b>Species:</b> {species}
+          </h4>
 
-            <Divider />
+          <Divider />
 
-            <h4>
-              Stats: <br />
-              <UnorderedList>
-                {stats &&
-                  stats.map((stat) => <ListItem>{stat.base_stat}</ListItem>)}
-              </UnorderedList>
-            </h4>
+          <h4>
+            <b>Stats:</b> <br />
+            <UnorderedList>
+              {stats &&
+                stats.map((stat) => <ListItem>{stat.base_stat}</ListItem>)}
+            </UnorderedList>
+          </h4>
 
-            <Divider />
+          <Divider />
 
-            <h4>
-              Types: <br />
-              <UnorderedList>
-                {types &&
-                  types.map((type) => <ListItem>{type.type.name}</ListItem>)}
-              </UnorderedList>
-            </h4>
+          <h4>
+            <b>Types:</b> <br />
+            <UnorderedList>
+              {types &&
+                types.map((type) => <ListItem>{type.type.name}</ListItem>)}
+            </UnorderedList>
+          </h4>
 
-            <Divider />
+          <Divider />
 
-            <p>Weight: {weight}</p>
+          <p>
+            <b>Weight:</b> {weight}
+          </p>
 
-            <Divider />
+          <Divider />
 
-            <p>
-              <b>Moves:</b> <br />
-              <UnorderedList>
-                {moves &&
-                  moves.map((move) => <ListItem>{move.move.name}</ListItem>)}
-              </UnorderedList>
-            </p>
-          </Box>
-        </Flex>
+          <p>
+            <b>Moves:</b> <br />
+            <UnorderedList>
+              {moves &&
+                moves.map((move) => <ListItem>{move.move.name}</ListItem>)}
+            </UnorderedList>
+          </p>
+        </Box>
+        {/* </Flex> */}
       </Box>
     </>
   );

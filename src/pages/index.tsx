@@ -20,6 +20,7 @@ const Index = () => {
 
   const [pokemons, setPokemons] = useState<PokemonData>();
 
+  // Pagination hook
   const {
     pages,
     pagesCount,
@@ -34,17 +35,7 @@ const Index = () => {
     initialState: { currentPage: 1, pageSize: 16 },
   });
 
-  // const { data } = useQuery(
-  //   ["pokemon", pageSize],
-  //   async () =>
-  //     await axios.get(
-  //       `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${pageSize}`
-  //     ),
-  //   {
-  //     keepPreviousData: true,
-  //   }
-  // );
-
+  // Api call
   const fetchPokemon = async (
     pageSize: number,
     offset: number
@@ -65,21 +56,7 @@ const Index = () => {
 
   const handlePagination = (nextPage: number) => {
     setCurrentPage(nextPage);
-    // router.push(`pagination/?page=${nextPage}`, undefined, { shallow: true });
-
-    // console.log("next page: ", nextPage);
-    // console.log("page size: ", pageSize);
   };
-
-  const handlePageSizeChange = (
-    event: ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const pageSize = Number(event.target.value);
-
-    setPageSize(pageSize);
-  };
-
-  // console.log(pokemons);
   return (
     <>
       <Container maxW="container.lg" centerContent>
@@ -90,11 +67,11 @@ const Index = () => {
           currentPage={currentPage}
           onPageChange={handlePagination}
         >
-          <PaginationContainer bg="blue.500" w="full">
+          <PaginationContainer w="full" marginTop={10}>
             <PaginationPrevious bg="blue.500" w="20rem">
               Previous
             </PaginationPrevious>
-            <PaginationPageGroup bg="blue.500" w="full">
+            <PaginationPageGroup w="full" justifyContent={"center"}>
               {pages.map((page: number) => (
                 <PaginationPage
                   key={`pagination_page_${page}`}

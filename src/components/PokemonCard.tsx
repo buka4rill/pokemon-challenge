@@ -76,8 +76,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ response }) => {
                 {pokemon.name}
               </Box>
 
-              {/* {data === undefined ? (<Box>No description found</Box>) ? (<Box>data</Box>)} */}
-
               <Box>{renderDescription(index)}</Box>
 
               <Box display="flex" mt="2" alignItems="center">
